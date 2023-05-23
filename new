@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo1</title>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div class="img1">
+        <img src="./画板 2.png" width="1550" alt="">
+    </div>
+    <div>
+        <h1 class="h1_1">简介</h1>
+        <p class="p_1">　　LeNet-5是一种经典的卷积神经网络结构，于1998年投入实际使用中。该网络最早应用于手写体字符识别应用中。普遍认为，卷积神经网络的出现开始于LeCun 等提出的LeNet 网络（LeCun et al., 1998），可以说LeCun 等是CNN 的缔造者，而LeNet-5 则是LeCun 等创造的CNN 经典之作 。</p>
+        <h1 class="h1_2">原理</h1>
+        <p class="p_2">　　LeNet5 一共由7 层组成，分别是C1、C3、C5 卷积层，S2、S4 降采样层（降采样层又称池化层），F6 为一个全连接层，输出是一个高斯连接层，该层使用softmax 函数对输出图像进行分类。为了对应模型输入结构，将MNIST 中的28* 28 的图像扩展为32* 32 像素大小。下面对每一层进行详细介绍。C1 卷积层由6 个大小为5* 5 的不同类型的卷积核组成，卷积核的步长为1，没有零填充，卷积后得到6 个28* 28 像素大小的特征图；S2 为最大池化层，池化区域大小为2* 2，步长为2，经过S2 池化后得到6 个14* 14 像素大小的特征图；C3 卷积层由16 个大小为5* 5 的不同卷积核组成，卷积核的步长为1，没有零填充，卷积后得到16 个10* 10 像素大小的特征图；S4 最大池化层，池化区域大小为2* 2，步长为2，经过S2 池化后得到16 个5* 5 像素大小的特征图；C5 卷积层由120 个大小为5* 5 的不同卷积核组成，卷积核的步长为1，没有零填充，卷积后得到120 个1* 1 像素大小的特征图；将120 个1* 1 像素大小的特征图拼接起来作为F6 的输入，F6 为一个由84 个神经元组成的全连接隐藏层，激活函数使用sigmoid 函数；最后一层输出层是一个由10 个神经元组成的softmax 高斯连接层，可以用来做分类任务。</p>
+        <h1 class="h1_3">其他</h1>
+        <p class="p_3">　　虽然深度学习概念提出于2006 年，但直到2012 年它才真正火热起来。在此期间出现了一个非常重要的事件——ImageNet 竞赛，它极大地推动了卷积神经网络乃至深度学习的发展。随着ImageNet 竞赛的持续升温，研究将卷积神经网络应用于图像识别任务的工作变得非常流行，在早期卷积神经网络LeNet-5 的基础上发展出许多新的变形。</p>
+        <p class="p_4">　　鉴于很多初学者不理解利用卷积神经网络进分类的类别数目的区别，特在此明确其定义：对于不同分类任务（具体为数据类别），设定最后输出层的输出通道（可以使用全连接层或卷积层等）与类别相对应。如将LeNet-5的最后一层输出通道设置为1000，其同样可以完成ImaegNet数据集的分类任务，将最新的深度网络输出类别设置为2，其也可以完成对应的分类任务。对于不同的任务，网络最后一层需要使用不同的结构使得模型的表现达到最佳。</p>
+    </div>
+    <div>
+        <button class="btn" onclick="print_info()">保　存</button>
+        <button class="btn2" onclick="refresh_page()">清　空</button>
+    </div>
+    <div>
+        <label>
+            <textarea class="text" style="resize:none;">关键词、小想法……统统到这</textarea>
+        </label>
+    </div>
+    <style>
+        .text {
+            margin-left: 1173px;
+            margin-top: 160px;
+            width: 256px;
+            height: 515px;
+            z-index: 1;
+            outline: none;
+            border: none;
+            font-size: 20px;
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+            color: rgba(204, 204, 204, 1);
+            position: fixed;
+        }
+        .text:focus {
+            margin-left: 1173px;
+            margin-top: 160px;
+            width: 256px;
+            height: 515px;
+            z-index: 0;
+            outline: none;
+            border: none;
+            font-size: 20px;
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+            color: rgba(56, 56, 56, 1);
+            position: fixed;
+        }
+        .btn {
+            width: 129px;
+            height: 30px;
+            z-index: 11;
+            border: none;
+            position: fixed;
+            transform: translate(1303px, 647px);
+            background-color: white;
+            outline: none;
+        }
+        .btn:active {
+            background-color: rgba(204, 204, 204, 1);
+            outline: none;
+        }
+        .btn2 {
+            width: 129px;
+            height: 30px;
+            z-index: 12;
+            border-bottom: none;
+            border-left: none;
+            border-top: none;
+            border-right-color: rgba(204, 204, 204, 1);
+            position: fixed;
+            transform: translate(1174px, 647px);
+            background-color: white;
+            outline: none;
+        }
+        .btn2:active {
+            background-color: rgba(204, 204, 204, 1);
+            outline: none;
+        }
+        .h1_1 {
+            font-size: 16px;
+            padding-top: 154px;
+            padding-left: 372px;
+            position: fixed;
+            z-index: 7;
+            color: rgba(56, 56, 56, 1);
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .p_1 {
+            font-size: 13px;
+            padding-top: 174px;
+            padding-left: 372px;
+            position: fixed;
+            max-width: 761px;
+            line-height: 19.5px;
+            z-index: 6;
+            color: rgba(56, 56, 56, 1);
+            font-weight: 900;
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .h1_2 {
+            font-size: 16px;
+            padding-top: 233.5px;
+            padding-left: 372px;
+            position: fixed;
+            z-index: 5;
+            color: rgba(56, 56, 56, 1);
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .p_2 {
+            font-size: 13px;
+            padding-top: 251px;
+            padding-left: 372px;
+            position: fixed;
+            max-width: 761px;
+            line-height: 19.5px;
+            z-index: 4;
+            color: rgba(56, 56, 56, 1);
+            font-weight: 900;
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .h1_3 {
+            font-size: 16px;
+            padding-top: 427px;
+            padding-left: 372px;
+            position: fixed;
+            z-index: 3;
+            color: rgba(56, 56, 56, 1);
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .p_3 {
+            font-size: 13px;
+            padding-top: 444px;
+            padding-left: 372px;
+            position: fixed;
+            max-width: 761px;
+            line-height: 19.5px;
+            z-index: 2;
+            color: rgba(56, 56, 56, 1);
+            font-weight: 900;
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .p_4 {
+            font-size: 13px;
+            padding-top: 503px;
+            padding-left: 372px;
+            position: fixed;
+            max-width: 761px;
+            line-height: 19.5px;
+            z-index: 1;
+            color: rgba(56, 56, 56, 1);
+            font-weight: 900;
+            font-family: "Microsoft YaHei", tahoma, arial, sans-serif, "Hiragino Sans GB";
+        }
+        .img1 {
+            margin-left: -20px;
+            margin-top: -8px;
+            z-index: -10;
+            position: fixed;
+            width: 1536px;
+            height: 720px;
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        function print_info() {
+            const text_input = document.getElementById("text").innerText;
+            console.log(text_input);
+
+        }
+        function refresh_page() {
+            document.location.reload();
+        }
+    </script>
+</body>
+</html>
